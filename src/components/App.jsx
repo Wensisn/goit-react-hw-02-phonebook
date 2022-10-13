@@ -1,16 +1,20 @@
-export const App = () => {
+import { Component } from "react"
+import { FormPhone } from "./Form/Form"
+
+export class App extends Component{
+
+  onSubmitHandel = data =>{
+    setTimeout(() => {
+      console.log(data)
+    }, 2000);
+  }
+z
+render(){
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <>
+<FormPhone onSubmit={this.onSubmitHandel}/>
+    </>
   );
+}
+
 };

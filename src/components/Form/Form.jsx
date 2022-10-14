@@ -1,42 +1,58 @@
 import { Component } from 'react';
-import { nanoid } from 'nanoid'
+import { TodoList } from '../TodoList/TodoList';
+import { nanoid } from 'nanoid';
+import arrayContact from '../todo.json';
 import css from './Form.module.css';
 
 export class FormPhone extends Component {
-
   state = {
-    contacts: [],
+    contacts: arrayContact,
     filter: '',
     name: '',
     number: '',
   };
 
- 
+  addTodo = text => {
+    const todo = {
+      id: nanoid(),
+      name: this.state.name,
+      number: this.state.number,
+    };
 
-  handelChange = event =>{
+    this.setState(prevState => ({
+      contacts: [todo, ...prevState.contacts],
+    }));
+  };
 
-    const {name , value} = event.currentTarget
-     this.setState({
+  deleteContact = TodoId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(todo => todo.id !== TodoId),
+    }));
+  };
+
+  handelChange = event => {
+    const { name, value } = event.currentTarget;
+    this.setState({
       [name]: value,
-    })
-  }
+    });
+  };
 
   onSubmitnForm = event => {
-    event.preventDefault()
+    event.preventDefault();
+    this.addTodo();
+    this.props.onSubmit(this.state.contacts);
+    this.reset();
+  };
 
-    this.props.onSubmit(this.state)
-
-    this.reset()
-  }
-
-
-  reset = () =>{
-    this.setState({    
-    name: '',
-    number: '',})
-  }
+  reset = () => {
+    this.setState({
+      name: '',
+      number: '',
+    });
+  };
 
   render() {
+    const { contacts } = this.state;
     return (
       <div className={css.sectionForm}>
         <h2>PhoneBook</h2>
@@ -45,9 +61,9 @@ export class FormPhone extends Component {
           <label htmlFor={nanoid()}>
             <span className={css.name}>Name</span>
             <input
-            id={nanoid()}
-            value={this.state.name}
-            type="text"
+              id={nanoid()}
+              value={this.state.name}
+              type="text"
               name="name"
               required
               onChange={this.handelChange}
@@ -56,7 +72,7 @@ export class FormPhone extends Component {
           <label htmlFor={nanoid()}>
             <span className={css.name}>Number</span>
             <input
-            id={nanoid()}
+              id={nanoid()}
               value={this.state.number}
               type="tel"
               name="number"
@@ -68,15 +84,11 @@ export class FormPhone extends Component {
           </label>
           <button className={css.click}>Нажми на меня</button>
         </form>
-        <div >
-          <h2>Contacts</h2>
-          <label htmlFor={nanoid()} className={css.findName}>
-            <span className={css.name}>Find contacts by name</span>
-            <input type="text" id={nanoid()} />
-          </label>
-          <p>Eden Clements :645-17-79</p>
-          <p>Hermione Kline :443-89-12 </p>
-          <p>Rosie Simpson : 459-12-56</p>
+        {/* <Search /> */}
+        <div>
+          <span>Общее: {contacts.length}</span>
+          {/* <span>Общее не выполн: {a.length}</span> */}
+          <TodoList contacts={contacts} onDeleteContact={this.deleteContact} />
         </div>
       </div>
     );

@@ -3,7 +3,6 @@ import { FormPhone } from './Form/Form';
 import { TodoList } from './TodoList/TodoList';
 import { nanoid } from 'nanoid';
 import { Filter } from './Filter/Filter';
-import arrayContact from './todo.json';
 
 export class App extends Component {
   state = {

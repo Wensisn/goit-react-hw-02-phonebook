@@ -1,5 +1,6 @@
 import css from './TodoList.module.css';
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const TodoList = ({ contacts, onDeleteContact }) => (
   <ul className={css.todoList}>
@@ -17,3 +18,14 @@ export const TodoList = ({ contacts, onDeleteContact }) => (
     ))}
   </ul>
 );
+
+TodoList.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  onDeleteContact: PropTypes.func.isRequired,
+};

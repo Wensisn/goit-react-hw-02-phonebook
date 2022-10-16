@@ -70,12 +70,6 @@ export class FormPhone extends Component {
             Add a contact
           </button>
         </form>
-        {/* <Search /> */}
-        <div>
-          {/* <span>Общее: {contacts.length}</span> */}
-          {/* <span>Общее не выполн: {a.length}</span> */}
-          {/* <TodoList contacts={contacts} onDeleteContact={this.deleteContact} /> */}
-        </div>
       </div>
     );
   }

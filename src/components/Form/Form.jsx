@@ -20,16 +20,10 @@ export class FormPhone extends Component {
 
   onSubmitnForm = event => {
     event.preventDefault();
-    if (this.props.onSubmit(this.state)) this.reset();
-
-    console.log(this.state);
-    // НЕ РЕБОТАЕТ СОЗДАНИЕ НОВОГО КОНТАКТА!
+    if (this.props.onSubmit(this.state)) this.resetForm();
   };
 
-  // const { name, number } = this.state;
-  // console.log(this.props.onSubmit(name, number));
-
-  reset = () => {
+  resetForm = () => {
     this.setState({
       name: '',
       number: '',
@@ -45,9 +39,10 @@ export class FormPhone extends Component {
         <h2>PhoneBook</h2>
 
         <form className={css.form} onSubmit={this.onSubmitnForm}>
-          <label htmlFor={nameInputId}>
+          <label htmlFor={nameInputId} className={css.label}>
             <span className={css.name}>Name</span>
             <input
+              className={css.input}
               id={nameInputId}
               value={this.state.name}
               type="text"
@@ -56,9 +51,10 @@ export class FormPhone extends Component {
               onChange={this.handelChange}
             />
           </label>
-          <label htmlFor={numberInputId}>
+          <label htmlFor={numberInputId} className={css.label}>
             <span className={css.name}>Number</span>
             <input
+              className={css.input}
               id={numberInputId}
               value={this.state.number}
               type="tel"
@@ -70,7 +66,7 @@ export class FormPhone extends Component {
             />
           </label>
           <button type="submit" className={css.click}>
-            Нажми на меня
+            Add a contact
           </button>
         </form>
         {/* <Search /> */}

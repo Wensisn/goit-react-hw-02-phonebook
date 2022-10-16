@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { FormPhone } from './Form/Form';
 import { TodoList } from './TodoList/TodoList';
 import { nanoid } from 'nanoid';
+import { Filter } from './Filter/Filter';
 import arrayContact from './todo.json';
 
 export class App extends Component {
@@ -15,23 +16,21 @@ export class App extends Component {
     filter: '',
   };
 
-  addTodo = ({ name, number }) => {
+  addContact = ({ name, number }) => {
     if (this.isExistContact(name)) {
+      console.log(name);
       alert`${name} такой уже есть`;
       return false;
     }
-    const todo = {
+    const contact = {
       id: nanoid(),
       name,
       number,
     };
-    // НЕ РЕБОТАЕТ !
 
-    console.log(
-      this.setState(prevState => ({
-        contacts: [todo, ...prevState.contacts],
-      }))
-    );
+    this.setState(prevState => ({
+      contacts: [contact, ...prevState.contacts],
+    }));
   };
 
   deleteContact = TodoId => {
@@ -50,12 +49,26 @@ export class App extends Component {
     }, 2000);
   };
 
+  changeFilter = event => {
+    this.setState({ filter: event.currentTarget.value });
+  };
+
   render() {
-    const { contacts } = this.state;
+    const { contacts, filter } = this.state;
+    const normolizeVisibleContact = filter.toLowerCase();
+
+    const visibleContact = contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normolizeVisibleContact)
+    );
+
     return (
       <>
-        <FormPhone contacts={contacts} onSubmit={this.addTodo} />
-        <TodoList contacts={contacts} onDeleteContact={this.deleteContact} />
+        <FormPhone contacts={contacts} onSubmit={this.addContact} />
+        <Filter value={filter} onChange={this.changeFilter} />
+        <TodoList
+          contacts={visibleContact}
+          onDeleteContact={this.deleteContact}
+        />
       </>
     );
   }

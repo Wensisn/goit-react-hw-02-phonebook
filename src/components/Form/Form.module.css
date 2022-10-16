@@ -1,28 +1,46 @@
-.sectionForm{
-display: flex;
-flex-direction: column;
-align-items: center;
+.sectionForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.form{
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    border: 1px solid seagreen;
-
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid seagreen;
+  border-radius: 5px;
+  background-color: blanchedalmond;
 }
 
-.name{
-    font-size: 16px;
-    font-weight: 18px;
+.label {
+  display: flex;
+  flex-direction: column;
+  background-color: bisque;
+}
+.input {
+  background-color: bisque;
+  display: flex;
+  border: 2px solid burlywood;
+}
+.name {
+  display: flex;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 18px;
 }
 
-.click{
-    margin: 10px;
+.click {
+  display: flex;
+  font-size: 16px;
+  background-color: bisque;
+  justify-content: center;
+  border: 1px solid burlywood;
+  margin-top: 20px;
 }
 
-.findName{
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.findName {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }

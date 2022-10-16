@@ -1,11 +1,18 @@
 .todoList {
   display: flex;
   gap: 30px;
+  justify-content: center;
 }
 .todoList__item {
   width: 200px;
-  border: 2px solid green;
+  border: 2px solid rgb(1, 7, 1);
   display: flex;
   align-items: center;
   flex-direction: column;
+  background-color: bisque;
+}
+
+.todoList__button {
+  background-color: bisque;
+  border: 1px solid blackl;
 }

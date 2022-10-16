@@ -20,7 +20,8 @@ export class FormPhone extends Component {
 
   onSubmitnForm = event => {
     event.preventDefault();
-    if (this.props.onSubmit(this.state)) this.resetForm();
+    this.props.onSubmit(this.state);
+    this.resetForm();
   };
 
   resetForm = () => {

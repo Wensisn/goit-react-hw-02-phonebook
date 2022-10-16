@@ -18,8 +18,7 @@ export class App extends Component {
 
   addContact = ({ name, number }) => {
     if (this.isExistContact(name)) {
-      console.log(name);
-      alert`${name} такой уже есть`;
+      alert`Such a contact has already been added`;
       return false;
     }
     const contact = {

@@ -11,7 +11,7 @@ export const TodoList = ({ contacts, onDeleteContact }) => (
           className={css.todoList__button}
           onClick={() => onDeleteContact(id)}
         >
-          Удалить
+          Remove
         </button>
       </li>
     ))}

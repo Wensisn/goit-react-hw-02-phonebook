@@ -8,7 +8,6 @@
   display: flex;
   flex-direction: column;
   padding: 20px;
-  border: 1px solid seagreen;
   border-radius: 5px;
   background-color: blanchedalmond;
 }
